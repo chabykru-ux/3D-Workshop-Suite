@@ -1,0 +1,54 @@
+{
+  "format": "FurnitureMaker3D.project",
+  "version": 1,
+  "project": {
+    "tab": "top",
+    "scale": 20,
+    "cab": {
+      "shape": "rect",
+      "cornerCut": 300,
+      "wing1": 600,
+      "wing2": 600,
+      "backRadius": 80,
+      "width": 600,
+      "depth": 580,
+      "height": 850,
+      "feet": 100,
+      "feetStyle": "legs",
+      "hollow": false,
+      "wall": 1.2,
+      "gap": 0.6,
+      "groove": 0.45,
+      "relief": 0.6,
+      "body": "#e3e5e4",
+      "facade": "#d6c1a1",
+      "handle": "#414951",
+      "foot": "#7a8289",
+      "sections": [
+        {
+          "type": "doors",
+          "height": 750,
+          "count": 2,
+          "depth": 500,
+          "handle": "bar",
+          "orientation": "auto",
+          "horizontal": "auto",
+          "vertical": "top",
+          "color": "facade"
+        }
+      ]
+    },
+    "top": {
+      "shape": "L45",
+      "length": 2000,
+      "depth": 600,
+      "side": 800,
+      "length2": 1600,
+      "depth2": 600,
+      "diagonal": 300,
+      "thickness": 40,
+      "mirror": false,
+      "color": "#ae8760"
+    }
+  }
+}

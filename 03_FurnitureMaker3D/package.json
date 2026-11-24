@@ -1,0 +1,54 @@
+{
+  "name": "furnituremaker3d",
+  "version": "0.2.3",
+  "description": "Offline parametric furniture scale model designer",
+  "author": "FurnitureMaker 3D",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --x64 --publish never",
+    "build": "npm run dist"
+  },
+  "devDependencies": {
+    "electron": "^40.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.azimuth171.furnituremaker3d",
+    "productName": "FurnitureMaker 3D",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.cjs",
+      "app/**/*",
+      "!app/START_WINDOWS.bat",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": true,
+      "artifactName": "FurnitureMaker3D-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "FurnitureMaker 3D",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    }
+  }
+}

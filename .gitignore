@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.buildenv/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.exe
+*.msi
+*.log
+build-log.txt
+self-test.txt
+.DS_Store
+Thumbs.db

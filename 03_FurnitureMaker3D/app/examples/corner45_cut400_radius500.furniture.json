@@ -1,0 +1,48 @@
+{
+  "tab": "cab",
+  "scale": 20,
+  "cab": {
+    "shape": "corner45",
+    "cornerCut": 400,
+    "wing1": 600,
+    "wing2": 600,
+    "backRadius": 500,
+    "width": 900,
+    "depth": 900,
+    "height": 850,
+    "feet": 100,
+    "feetStyle": "plinth",
+    "hollow": false,
+    "wall": 1.2,
+    "gap": 0.6,
+    "groove": 0.45,
+    "relief": 0.6,
+    "body": "#e3e5e4",
+    "facade": "#d6c1a1",
+    "handle": "#414951",
+    "foot": "#7a8289",
+    "sections": [
+      {
+        "type": "doors",
+        "height": 750,
+        "count": 1,
+        "depth": 500,
+        "handle": "bar",
+        "horizontal": "auto",
+        "vertical": "top",
+        "color": "facade"
+      }
+    ]
+  },
+  "top": {
+    "shape": "rect",
+    "length": 2000,
+    "depth": 600,
+    "side": 800,
+    "length2": 1600,
+    "depth2": 600,
+    "thickness": 40,
+    "mirror": false,
+    "color": "#ae8760"
+  }
+}

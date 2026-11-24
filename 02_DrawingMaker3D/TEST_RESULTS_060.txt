@@ -1,0 +1,44 @@
+05_sphere.png PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+05_sphere.pdf PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+06_hemisphere.png PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+06_hemisphere.pdf PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+07_cone.png PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+07_cone.pdf PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+08_frustum.png PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+08_frustum.pdf PASS: OCR, geometry, volume, watertight, STL + 3MF round-trip
+Invalid geometry blocked: {'shape': 'sphere', 'L': 40, 'W': 40, 'H': 35}
+Invalid geometry blocked: {'shape': 'hemisphere', 'L': 60, 'W': 60, 'H': 31}
+Invalid geometry blocked: {'shape': 'frustum', 'L': 60, 'W': 60, 'H': 40, 'top_d': 70}
+Invalid geometry blocked: {'shape': 'cone', 'L': 40, 'W': 40, 'H': 50, 'holes': [{'d': 3}]}
+Contradictory drawing blocked
+example_drawing.png PASS: closed solid, dimensions, STL and 3MF round-trip
+example_drawing.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+example_multiple.png PASS: closed solid, dimensions, STL and 3MF round-trip
+example_multiple.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+example_cylinder.png PASS: closed solid, dimensions, STL and 3MF round-trip
+example_cylinder.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+example_step.png PASS: closed solid, dimensions, STL and 3MF round-trip
+example_step.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+example_bracket.png PASS: closed solid, dimensions, STL and 3MF round-trip
+01_plate_5_holes.png PASS: closed solid, dimensions, STL and 3MF round-trip
+01_plate_5_holes.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+02_round_flange_5_holes.png PASS: closed solid, dimensions, STL and 3MF round-trip
+02_round_flange_5_holes.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+03_stepped_block_2_holes.png PASS: closed solid, dimensions, STL and 3MF round-trip
+03_stepped_block_2_holes.pdf PASS: closed solid, dimensions, STL and 3MF round-trip
+Additional geometry: 1 holes PASS
+Additional geometry: 1 holes PASS
+Additional geometry: 4 holes PASS
+Invalid geometry blocked: {'d': 10, 'x': 55, 'y': 30, 'depth': None}
+Invalid geometry blocked: {'d': 10, 'x': 20, 'y': 30, 'depth': 5}
+Invalid geometry blocked: {'d': 10, 'x': 98, 'y': 30, 'depth': None}
+png PASS: OCR, shape, coordinates, top plane, volume, STL and 3MF round-trip
+pdf PASS: OCR, shape, coordinates, top plane, volume, STL and 3MF round-trip
+Geometry PASS: 0 holes
+Geometry PASS: 1 holes
+Geometry PASS: 3 holes
+Invalid geometry blocked: {'slope': 0}
+Invalid geometry blocked: {'slope': 50}
+Invalid geometry blocked: {'holes': [{'d': 10, 'x': 99, 'y': 30, 'depth': None}]}
+Invalid geometry blocked: {'holes': [{'d': 10, 'x': 20, 'y': 30, 'depth': 5}]}
+Invalid geometry blocked: {'holes': [{'d': 10, 'x': 20, 'y': 30, 'depth': None}, {'d': 10, 'x': 21, 'y': 30, 'depth': None}]}

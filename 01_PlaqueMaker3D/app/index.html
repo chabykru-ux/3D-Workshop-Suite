@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111a2d" />
+  <meta name="description" content="PlaqueMaker 3D — автономный конструктор табличек с экспортом STL и 3MF." />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>PlaqueMaker 3D — конструктор табличек</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brandmark"><img src="icon.svg" alt="" width="43" height="43"></div><div class="brandname">PlaqueMaker <b>3D</b><small>КОНСТРУКТОР ТАБЛИЧЕК</small></div></div>
+  <div class="top-actions"><span class="version">v1.3.1 • автономно</span><button type="button" id="newBtn" class="ghost top-btn" title="Вернуть настройки по умолчанию">↺ <span>Сброс</span></button><button type="button" id="saveBtn" class="ghost top-btn">↓ <span>Проект</span></button><button type="button" id="loadBtn" class="ghost top-btn">↑ <span>Открыть</span></button><input type="file" id="loadFile" accept=".json,application/json" hidden /></div>
+</header>
+<main class="app-layout">
+  <aside class="settings" aria-label="Параметры таблички">
+    <div class="panel-heading"><div><h1>Новая табличка</h1><p>Настраивай параметры — результат обновится автоматически</p></div><span class="live"><i></i> LIVE</span></div>
+    <section class="settings-card plaque-templates">
+      <div class="section-heading"><span class="section-icon">▦</span><h2>Вид таблички</h2></div>
+      <div class="template-options" role="radiogroup" aria-label="Вид таблички">
+        <label class="template-choice"><input type="radio" name="plaqueType" value="classic" data-plaque-type checked><span class="template-illustration" aria-hidden="true"><svg viewBox="0 0 150 75"><rect x="5" y="5" width="140" height="65" rx="7" fill="#f2f5f6" stroke="#55b6d8" stroke-width="4"/><text x="75" y="28" text-anchor="middle">ИМЯ / НАЗВАНИЕ</text><line x1="27" y1="39" x2="123" y2="39" stroke="#547aa0" stroke-width="2"/><text x="75" y="55" text-anchor="middle">ТЕЛЕФОН</text></svg></span><strong>Обычная</strong><small>Как в версии 1.2.1</small></label>
+        <label class="template-choice"><input type="radio" name="plaqueType" value="room" data-plaque-type><span class="template-illustration" aria-hidden="true"><svg viewBox="0 0 150 75"><rect x="5" y="5" width="140" height="65" rx="7" fill="#f2f5f6" stroke="#55b6d8" stroke-width="4"/><text x="58" y="28" text-anchor="middle">ИМЯ</text><line x1="17" y1="39" x2="98" y2="39" stroke="#547aa0" stroke-width="2"/><text x="58" y="54" text-anchor="middle">ТЕЛЕФОН</text><line x1="105" y1="11" x2="105" y2="64" stroke="#547aa0" stroke-width="2"/><text x="125" y="43" text-anchor="middle" font-size="15">215</text></svg></span><strong>С номером</strong><small>Вертикальная линия и поле справа</small></label>
+      </div>
+      <div class="template-extra" data-visible-template="room" hidden>
+        <p class="hint">Правая часть — отдельное поле. Основные надписи и горизонтальная линия автоматически помещаются слева.</p>
+        <div class="two-col">
+          <label class="field">Ширина правой зоны <span>мм</span><input type="number" data-key="sideWidth" min="16" max="90" step="1"></label>
+          <label class="field">Надпись справа<input type="text" data-key="sideText" maxlength="60" placeholder="215 / OFFICE"></label>
+          <label class="field">Размер надписи <span>мм</span><input type="number" data-key="sideTextSize" min="3" max="32" step="0.5"></label>
+          <label class="field">Центр надписи сверху <span>мм</span><input type="number" data-key="sideTextY" min="4" max="175" step="1"></label>
+          <label class="field">Толщина вертикальной линии <span>мм</span><input type="number" data-key="sideDividerWidth" min="0.6" max="3" step="0.2"></label>
+          <label class="switch-row side-bold"><input type="checkbox" data-key="sideTextBold"><span class="switch-ui"></span><span class="switch-copy"><strong>Жирные буквы справа</strong></span></label>
+        </div>
+      </div>
+    </section>
+    <section class="settings-card">
+      <div class="section-heading"><span class="section-icon">▱</span><h2>Размеры и основание</h2></div>
+      <div class="two-col">
+        <label class="field">Ширина <span>мм</span><input type="number" data-key="width" min="45" max="250" step="1"></label>
+        <label class="field">Высота <span>мм</span><input type="number" data-key="height" min="30" max="180" step="1"></label>
+        <label class="field">Толщина основания <span>мм</span><input type="number" data-key="baseThickness" min="1.2" max="8" step="0.2"></label>
+        <label class="field">Скругление <span>мм</span><input type="number" data-key="radius" min="0" max="20" step="1"></label>
+      </div>
+    </section>
+    <section class="settings-card">
+      <div class="section-heading"><span class="section-icon">▣</span><h2>Бортик и крепление</h2></div>
+      <label class="switch-row"><input type="checkbox" data-key="rimEnabled"><span class="switch-ui"></span><span class="switch-copy"><strong>Рельефный бортик</strong><small>Объёмная рамка по краю</small></span></label>
+      <div data-visible-if="rimEnabled" class="nested two-col">
+        <label class="field">Ширина бортика <span>мм</span><input type="number" data-key="rimWidth" min="0.8" max="12" step="0.2"></label>
+        <label class="field">Высота бортика <span>мм</span><input type="number" data-key="rimHeight" min="0.4" max="4" step="0.2"></label>
+      </div>
+      <div class="soft-divider"></div>
+      <label class="switch-row"><input type="checkbox" data-key="holesEnabled"><span class="switch-ui"></span><span class="switch-copy"><strong>4 крепёжных отверстия</strong><small>Сквозные отверстия в углах</small></span></label>
+      <div data-visible-if="holesEnabled" class="nested two-col">
+        <label class="field">Диаметр <span>мм</span><input type="number" data-key="holeDiameter" min="2" max="10" step="0.5"></label>
+        <label class="field">Отступ от края <span>мм</span><input type="number" data-key="holeInset" min="3" max="24" step="0.5"></label>
+      </div>
+    </section>
+    <section class="settings-card">
+      <div class="section-heading"><span class="section-icon">T</span><h2>Надписи</h2></div>
+      <div class="two-col">
+        <label class="field">Шрифт<select id="fontFamilySelect" data-key="fontFamily" aria-label="Шрифт"></select></label>
+        <label class="field">Тип букв<select data-key="textMode"><option value="raised">Выпуклые</option><option value="engraved">Углублённые</option></select></label>
+        <label class="field">Рельеф / глубина <span>мм</span><input type="number" data-key="textDepth" min="0.3" max="2.5" step="0.1"></label>
+        <label class="field">Выравнивание<select data-key="textAlign"><option value="center">По центру</option><option value="left">Слева</option><option value="right">Справа</option></select></label>
+      </div>
+      <div class="font-browser">
+        <div class="font-browser-title"><b>Библиотека шрифтов</b><small>12 вариантов · выбор сразу меняет 3D</small></div>
+        <div class="font-filters" id="fontFilters" aria-label="Фильтр шрифтов">
+          <button type="button" data-font-lang="all" class="active">Все</button>
+          <button type="button" data-font-lang="ru">Русский</button>
+          <button type="button" data-font-lang="en">English</button>
+          <button type="button" data-font-lang="he">עברית</button>
+        </div>
+        <div id="fontGallery" class="font-gallery" aria-label="Образцы шрифтов"></div>
+        <button type="button" id="fontCustomTile" class="font-tile font-custom-tile" hidden><div class="font-tile-row"><strong>Мой шрифт</strong><small>TTF / OTF</small></div><div class="font-tile-sample">My font</div><small class="font-kind">Загруженный файл</small></button>
+        <button type="button" id="fontImportBtn" class="font-import">＋ Импортировать свой TTF / OTF</button>
+        <input id="fontImportFile" type="file" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2" hidden>
+        <div class="font-live"><small>Надпись выбранным шрифтом</small><div id="chosenFontPreview" class="font-live-sample">CHABANY OLEG</div><small id="selectedFontInfo"></small></div>
+        <p class="hint" id="fontAvailabilityNote">Шрифты из Windows; при отсутствии браузер использует запасной.</p>
+      </div>
+      <div class="soft-divider"></div>
+      <div id="textFields"></div>
+      <div class="text-note">Для иврита набирай текст как обычно — справа налево. Положение строки измеряется от верхнего края. Длинные строки автоматически уменьшаются, чтобы вместиться в табличку.</div>
+    </section>
+    <section class="settings-card">
+      <div class="section-heading"><span class="section-icon">╱</span><h2>Декоративная линия</h2></div>
+      <label class="switch-row"><input type="checkbox" data-key="dividerEnabled"><span class="switch-ui"></span><span class="switch-copy"><strong>Добавить разделитель</strong><small>Отдельный цвет и небольшой рельеф</small></span></label>
+      <div data-visible-if="dividerEnabled" class="nested two-col">
+        <label class="field">Положение сверху <span>мм</span><input type="number" data-key="dividerY" min="3" max="170" step="1"></label>
+        <label class="field">Толщина линии <span>мм</span><input type="number" data-key="dividerWidth" min="0.5" max="3" step="0.2"></label>
+        <label class="field">Длина линии <span>%</span><input type="number" data-key="dividerLength" min="15" max="95" step="5"></label>
+        <label class="field">Высота линии <span>мм</span><input type="number" data-key="dividerHeight" min="0.3" max="2" step="0.1"></label>
+      </div>
+    </section>
+    <section class="settings-card">
+      <div class="section-heading"><span class="section-icon">◉</span><h2>Цвета для 3MF</h2></div>
+      <div class="color-grid">
+        <label class="color-field"><input type="color" data-key="baseColor"><span>Основание</span></label>
+        <label class="color-field"><input type="color" data-key="rimColor"><span>Бортик</span></label>
+        <label class="color-field"><input type="color" data-key="textColor"><span>Текст выше линии</span></label>
+        <label class="color-field"><input type="color" data-key="bottomTextColor"><span>Текст ниже линии</span></label>
+        <label class="color-field"><input type="color" data-key="accentColor"><span>Разделительные линии</span></label>
+        <label class="color-field" data-visible-template="room" hidden><input type="color" data-key="sideTextColor"><span>Надпись справа</span></label>
+      </div>
+      <p class="hint">Верхние, нижние и (во втором типе) правые надписи — независимые части 3MF. Если разделитель выключен, верхние — строки 1–2, нижние — 3–4. Назначение катушек CFS Lite проверь в Creality Print.</p>
+    </section>
+    <section class="settings-card">
+      <div class="section-heading"><span class="section-icon">⚙</span><h2>Точность геометрии</h2></div>
+      <label class="field">Шаг сетки<select data-key="resolution"><option value="0.5">0,50 мм — быстрый черновик</option><option value="0.35">0,35 мм — стандартный</option><option value="0.25">0,25 мм — мелкие детали</option><option value="0.2">0,20 мм — высокий (медленнее)</option></select></label>
+      <p class="hint">Меньший шаг делает контуры букв ровнее, но увеличивает размер 3D-файла. Для мелкого текста проверь предварительный просмотр слоёв в слайсере.</p>
+    </section>
+  </aside>
+  <section class="workbench" aria-label="Просмотр 3D-модели">
+    <div class="preview-header"><div><h2>Предпросмотр в 3D</h2><p>Зажми мышь и вращай модель • колесо — масштаб</p></div><div class="preview-tools"><button id="frontBtn" type="button" class="mini-btn" title="Вид сверху">Сверху</button><button id="angleBtn" type="button" class="mini-btn" title="Изометрия">3D</button><button id="zoomBtn" type="button" class="mini-btn" title="Уместить">⤢</button></div></div>
+    <div class="preview-stage" id="previewStage"><canvas id="preview" aria-label="Трёхмерная модель таблички"></canvas><div id="previewFallback" class="preview-fallback" hidden>Не удалось запустить WebGL. Попробуй открыть программу в Chrome или Edge.</div><div class="axis"><span class="axis-blue"></span> Модель в миллиметрах</div><div class="view-badge">3D • ПРЕДПРОСМОТР</div><div id="buildOverlay" class="overlay" hidden>Перестраиваем модель...</div></div>
+    <div class="metrics"><div class="metric"><small>Размер модели</small><strong id="sizeMetric">—</strong></div><div class="metric"><small>Макс. высота</small><strong id="thickMetric">—</strong></div><div class="metric"><small>Сетка</small><strong id="gridMetric">—</strong></div></div>
+    <div id="warnings" class="warnings" role="status"></div>
+    <div class="export-panel"><div class="export-heading"><div><h2>Готовая 3D-модель</h2><p>Файл создаётся на этом устройстве, без сервера</p></div><span class="status" id="readyBadge">● Готово</span></div><div class="export-buttons"><button id="export3mf" class="primary"><span class="btn-icon">⬡</span><span><b>Создать 3MF</b><small>Многоцветная печать</small></span></button><button id="exportStl" class="secondary"><span class="btn-icon">▱</span><span><b>Создать STL</b><small>Одноцветная печать</small></span></button></div><p class="export-tip">В Creality Print открой экспортированный файл и проверь масштаб, назначение цветов, слои и поддержку нависаний до печати.</p></div>
+    <footer class="footer">PlaqueMaker 3D · v1.3.1 · создано для индивидуальных 3D-табличек · полностью автономно</footer>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

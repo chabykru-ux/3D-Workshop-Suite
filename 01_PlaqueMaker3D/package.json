@@ -1,0 +1,56 @@
+{
+  "name": "plaquemaker3d",
+  "version": "1.3.1",
+  "description": "Offline 3D plaque designer",
+  "author": "PlaqueMaker 3D",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --x64 --publish never",
+    "build": "npm run dist"
+  },
+  "devDependencies": {
+    "electron": "^40.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.azimuth171.plaquemaker3d",
+    "productName": "PlaqueMaker 3D",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.cjs",
+      "app/**/*",
+      "!app/Пример_таблички{,/**/*}",
+      "!app/START_WINDOWS.bat",
+      "!app/README_RU.txt",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": true,
+      "artifactName": "PlaqueMaker3D-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PlaqueMaker 3D",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    }
+  }
+}

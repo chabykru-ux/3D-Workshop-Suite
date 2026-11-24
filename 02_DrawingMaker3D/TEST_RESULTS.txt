@@ -1,0 +1,4 @@
+v0.3.0: original example_bracket.png (actual generated drawing): OCR, three profiles, two holes, watertight solid 20 x 15 x 20 mm, volume 964.8403 mm3 (analytic 964.8894 mm3), STL and 3MF reload PASS.
+Bracket invalid radius, missing upright hole declaration, invalid thickness: rejected.
+Regression: all 8 prior PNG/PDF cases and 6 rejection cases PASS.
+Windows GUI and Creality Print not tested for v0.3.0.

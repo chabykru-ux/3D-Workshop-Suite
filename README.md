@@ -26,7 +26,7 @@ The applications are independent; install only the ones you need. They do not se
 
 ## Windows installation
 
-Download the desired Windows x64 Setup.exe from the repository's Releases section once the release assets have been uploaded. Run the installer and follow its prompts. An unsigned installer may trigger Windows SmartScreen; review the publisher and verify the download before running it.
+Download the desired Windows x64 Setup.exe from the [Releases section](https://github.com/chabykru-ux/3D-Workshop-Suite/releases), or download the combined `3D-Workshop-Suite-All-Installers.zip`. Run the installer and follow its prompts. An unsigned installer may trigger Windows SmartScreen; review the publisher and verify the download before running it.
 
 | Installer filename | Version |
 | --- | --- |
@@ -45,4 +45,4 @@ This is a lightweight collection, not a general-purpose CAD/CAM system or a CNC 
 
 ## License and dependencies
 
-The source is included for review. A redistribution license for the project must be selected by its owner before granting open-source rights. Third-party dependencies retain their respective licenses. Windows system fonts are not bundled; use imported fonts only with appropriate rights.
+The project's own source code and documentation are provided under the [MIT License](LICENSE). Third-party dependencies retain their respective licenses; see [Third-party components](THIRD_PARTY_NOTICES.md). Windows system fonts are not bundled; use imported fonts only with appropriate rights.
